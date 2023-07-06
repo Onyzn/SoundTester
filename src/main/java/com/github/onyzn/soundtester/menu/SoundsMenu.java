@@ -67,15 +67,14 @@ public class SoundsMenu extends ListedMenuPlayer {
           currentPicths[i] = Math.max(currentPicths[i] - 0.5F, 0.5F);
         } else if (evt.getClick() == ClickType.LEFT || evt.getClick() == ClickType.RIGHT) {
           player.playSound(player.getLocation(), sound, 1F, currentPicths[i]);
-        } else if (evt.getClick() == ClickType.MIDDLE) {
-          player.closeInventory();
+        } else if (evt.getClick() == ClickType.DROP) {
           String text = sound.name() + " " + currentPicths[i];
           TextComponent component = new TextComponent(text);
           component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText("§7Copiar")));
           component.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, text));
 
-
           player.spigot().sendMessage(component);
+          player.closeInventory();
           return;
         }
 
